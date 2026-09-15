@@ -1,7 +1,7 @@
 import mssql_python
 
 SERVER = r"DESKTOP-C8QLULS"
-DATABASE = "AdministracionTerrenos"
+DATABASE = "LotesDB"
 
 def conectar_bd():
     cadena_conexion = (
