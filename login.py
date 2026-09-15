@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import hashlib
-import dashboard  # importamos el modulo del dashboard
-
+from dashboard import abrir_dashboard
 from database import conectar_bd
 
 
@@ -107,20 +106,21 @@ class LoginWindow:
 
             # Abrir dashboard
             self.root.withdraw()
-            ventana_dash = tk.Toplevel()
 
             # id_usuario, id_rol, name_usuario, correo, nombre_rol, clave_hash
-            dashboard.DashboardWindow(
-                ventana_dash,
-                usuario={
-                    "IdUsuario": id_usuario,
-                    "IdRol": id_rol,
-                    "NombreUsuario": nombre_usuario,
-                    "Correo": correo,
-                    "NombreRol": nombre_rol,
-                },
-                on_logout=self.cerrar_sesion,
-            )
+
+            ventana_dash = abrir_dashboard(usuario={
+                "IdUsuario": id_usuario,
+                "IdRol": id_rol,
+                "NombreUsuario": nombre_usuario,
+                "Correo": correo,
+                "NombreRol": nombre_rol,
+            })
+
+            ventana_dash.protocol(
+                "WM_DELETE_WINDOW",
+                lambda: (ventana_dash.destroy(), self.cerrar_sesion())
+                )
 
         except Exception as e:
             messagebox.showerror("Error de conexion", f"Detalle:\n{e}")
