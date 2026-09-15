@@ -73,11 +73,10 @@ class LoginWindow:
             cursor = conn.cursor()
             cursor.execute(
                 """
-                SELECT u.IdUsuario, u.NombreUsuario, u.NombreCompleto,
-                       u.Correo, u.IdRol, r.NombreRol, u.ClaveHash
-                FROM dbo.Usuarios u
-                INNER JOIN dbo.Roles r ON u.IdRol = r.IdRol
-                WHERE u.NombreUsuario = ? AND u.Activo = 1
+                select u.IdUsuario,u.IdRol,u.Usuario,u.correo,r.NombreRol,u.Clave 
+                    from Usuarios u
+                inner join Roles r on r.IdRol = u.IdRol 
+                where u.Usuario = ? and u.Estado = 1
                 """,
                 (usuario,),
             )
@@ -87,7 +86,7 @@ class LoginWindow:
                 messagebox.showerror("Error", "Usuario no encontrado o inactivo.")
                 return
 
-            id_usuario, nombre_usuario, nombre_completo, correo, id_rol, nombre_rol, clave_hash = fila
+            id_usuario, id_rol, nombre_usuario, correo, nombre_rol, clave_hash = fila
 
             # Comparar hash
             clave_ingresada = hashear_clave(clave)
@@ -109,14 +108,15 @@ class LoginWindow:
             # Abrir dashboard
             self.root.withdraw()
             ventana_dash = tk.Toplevel()
+
+            # id_usuario, id_rol, name_usuario, correo, nombre_rol, clave_hash
             dashboard.DashboardWindow(
                 ventana_dash,
                 usuario={
                     "IdUsuario": id_usuario,
-                    "NombreUsuario": nombre_usuario,
-                    "NombreCompleto": nombre_completo,
-                    "Correo": correo,
                     "IdRol": id_rol,
+                    "NombreUsuario": nombre_usuario,
+                    "Correo": correo,
                     "NombreRol": nombre_rol,
                 },
                 on_logout=self.cerrar_sesion,
