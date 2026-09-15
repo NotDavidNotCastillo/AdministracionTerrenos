@@ -13,7 +13,7 @@ def abrir_dashboard(usuario=None):
 
     def salir():
       #  LoginWindow.cerrar_sesion()
-       root.quit()
+       ventana.quit()
 
     
     titulo = tk.Label(ventana, text="Sistema de Gestion de Terrenos", font=("Arial",25,"bold"))
