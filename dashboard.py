@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from database import conectar_bd
 from cliente import abrir_clientes
+from proyecto import abrir_proyecto
 
 
 def abrir_dashboard(usuario=None):
@@ -12,6 +13,8 @@ def abrir_dashboard(usuario=None):
     ventana.title("DashBoard")
     ventana.geometry("700x600")
     ventana.resizable(True,True)
+
+    # print(usuario.get("NombreUsuario"))
 
     def salir():
       #  LoginWindow.cerrar_sesion()
@@ -51,7 +54,7 @@ def abrir_dashboard(usuario=None):
               font=("Arial",13),
               width=25, height=2,
               activebackground='light gray',
-              command=lambda: abrir_clientes(usuario)
+              command=lambda: abrir_clientes(usuario),
               ).pack(side="left",padx=4)
 
     proyecto = tk.Button(uno_fila, 
@@ -59,7 +62,7 @@ def abrir_dashboard(usuario=None):
               font=("Arial",13),
               width=25, height=2,
               activebackground='light gray',
-            #   command=lambda: abrir_ciudades(usuario)
+              command=lambda: abrir_proyecto(usuario),
               ).pack(side="right",padx=4)
 
     lotes = tk.Button(dos_fila, 
