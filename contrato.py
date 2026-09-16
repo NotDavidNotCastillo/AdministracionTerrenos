@@ -250,3 +250,9 @@ def abrir_contrato(usuario=None, datos_reservacion=None):
     # Si viene desde reservación, abrir automáticamente el formulario
     if datos_reservacion:
         ventana_contrato.after(200, accion_crear)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()
+    abrir_contrato()
+    root.mainloop()
