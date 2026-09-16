@@ -57,6 +57,7 @@ class LoginWindow:
             btn_frame, text="Salir", command=self.root.destroy
         ).pack(side="left", expand=True, fill="x", padx=(5, 0))
 
+
     def iniciar_sesion(self):
         usuario = self.entry_usuario.get().strip()
         clave = self.entry_clave.get().strip()

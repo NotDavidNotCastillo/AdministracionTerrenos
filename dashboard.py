@@ -2,6 +2,8 @@ import tkinter as tk
 
 from tkinter import messagebox
 from database import conectar_bd
+from cliente import abrir_clientes
+
 
 def abrir_dashboard(usuario=None):
 
@@ -9,7 +11,7 @@ def abrir_dashboard(usuario=None):
     ventana = tk.Toplevel()
     ventana.title("DashBoard")
     ventana.geometry("700x600")
-    ventana.resizable(True,True)    
+    ventana.resizable(True,True)
 
     def salir():
       #  LoginWindow.cerrar_sesion()
@@ -48,15 +50,15 @@ def abrir_dashboard(usuario=None):
               text="Clientes", 
               font=("Arial",13),
               width=25, height=2,
-              activebackground='light gray'
-            #   command=lambda: abrir_clientes(usuario)
+              activebackground='light gray',
+              command=lambda: abrir_clientes(usuario)
               ).pack(side="left",padx=4)
 
     proyecto = tk.Button(uno_fila, 
               text="Proyectos", 
               font=("Arial",13),
               width=25, height=2,
-              activebackground='light gray'
+              activebackground='light gray',
             #   command=lambda: abrir_ciudades(usuario)
               ).pack(side="right",padx=4)
 
@@ -64,7 +66,7 @@ def abrir_dashboard(usuario=None):
               text="Lotes", 
               font=("Arial",13),
               width=25, height=2, 
-              activebackground='light gray'
+              activebackground='light gray',
             #   command=abrir_reportes
               ).pack(side="left",padx=4)
     
@@ -72,7 +74,7 @@ def abrir_dashboard(usuario=None):
                   text="Reservaciones", 
                   font=("Arial",13),
                   width=25, height=2,
-                  activebackground='light gray'
+                  activebackground='light gray',
                 #   command=abrir_reportes
                   ).pack(side="right",padx=4)
 
@@ -80,7 +82,7 @@ def abrir_dashboard(usuario=None):
                   text="Contratos", 
                   font=("Arial",13),
                   width=25, height=2,
-                  activebackground='light gray'
+                  activebackground='light gray',
                 #   command=abrir_reportes
                   ).pack(side="left",padx=4)
     
@@ -88,7 +90,7 @@ def abrir_dashboard(usuario=None):
                   text="Financiamiento", 
                   font=("Arial",13),
                   width=25, height=2,
-                  activebackground='light gray'
+                  activebackground='light gray',
                 #   command=abrir_reportes
                   ).pack(side="right",padx=4)
 
@@ -96,7 +98,7 @@ def abrir_dashboard(usuario=None):
                   text="Pagos", 
                   font=("Arial",13),
                   width=25, height=2,
-                  activebackground='light gray'
+                  activebackground='light gray',
                 #   command=abrir_reportes
                   ).pack(side="left",padx=4)
     
@@ -104,7 +106,7 @@ def abrir_dashboard(usuario=None):
                   text="Reportes", 
                   font=("Arial",13),
                   width=25, height=2,
-                  activebackground='light gray'
+                  activebackground='light gray',
                 #   command=abrir_reportes
                   ).pack(side="right",padx=4)
 
