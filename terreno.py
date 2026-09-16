@@ -14,7 +14,7 @@ def abrir_terrenos(usuario=None):
         pass
 
     ventana_terrenos = tk.Toplevel()
-    ventana_terrenos.geometry("1200x660")
+    ventana_terrenos.geometry("1200x600")
     ventana_terrenos.resizable(False, False)
     ventana_terrenos.title("Gestion de Terrenos")
 
