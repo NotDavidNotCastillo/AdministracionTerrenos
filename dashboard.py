@@ -4,7 +4,7 @@ from tkinter import messagebox
 from database import conectar_bd
 from cliente import abrir_clientes
 from proyecto import abrir_proyecto
-
+from terreno import abrir_terrenos
 
 def abrir_dashboard(usuario=None):
 
@@ -46,6 +46,9 @@ def abrir_dashboard(usuario=None):
     cuatro_fila = tk.Frame(ventana)
     cuatro_fila.pack(pady=8)
 
+    cinco_fila = tk.Frame(ventana)
+    cinco_fila.pack(pady=8)
+
     # ==============================
     # Botones dentro de las filas
     # ==============================
@@ -73,7 +76,15 @@ def abrir_dashboard(usuario=None):
             #   command=abrir_reportes
               ).pack(side="left",padx=4)
     
-    reserva = tk.Button(dos_fila, 
+    terrenos = tk.Button(dos_fila, 
+              text="Terrenos", 
+              font=("Arial",13),
+              width=25, height=2, 
+              activebackground='light gray',
+              command=lambda: abrir_terrenos(usuario),
+              ).pack(side="right",padx=4)
+    
+    reserva = tk.Button(tres_fila, 
                   text="Reservaciones", 
                   font=("Arial",13),
                   width=25, height=2,
@@ -89,7 +100,7 @@ def abrir_dashboard(usuario=None):
                 #   command=abrir_reportes
                   ).pack(side="left",padx=4)
     
-    financiamiento = tk.Button(tres_fila, 
+    financiamiento = tk.Button(cuatro_fila, 
                   text="Financiamiento", 
                   font=("Arial",13),
                   width=25, height=2,
@@ -105,21 +116,22 @@ def abrir_dashboard(usuario=None):
                 #   command=abrir_reportes
                   ).pack(side="left",padx=4)
     
-    reporte = tk.Button(cuatro_fila, 
+    reporte = tk.Button(cinco_fila, 
                   text="Reportes", 
                   font=("Arial",13),
                   width=25, height=2,
                   activebackground='light gray',
                 #   command=abrir_reportes
-                  ).pack(side="right",padx=4)
+                  ).pack(side="left",padx=4)
 
-    cerrar = tk.Button(ventana, 
+    cerrar = tk.Button(cinco_fila, 
               text="Salir", 
               font=("Arial",13),
               width=25, height=2,
-              activebackground='light gray',
+              background="#ff5151",
+              activebackground="#fab1b1",
               command=salir
-              ).pack(pady=8,padx=4)
+              ).pack(side='right',padx=4)
 
     return ventana
 
