@@ -1,10 +1,13 @@
 import tkinter as tk
-
 from tkinter import messagebox
 from database import conectar_bd
 from cliente import abrir_clientes
 from proyecto import abrir_proyecto
 from terreno import abrir_terrenos
+from lote import abrir_lote
+from reservacion import abrir_reservacion
+from contrato import abrir_contrato
+from financiamiento import abrir_financiamiento
 
 def abrir_dashboard(usuario=None):
 
@@ -73,7 +76,7 @@ def abrir_dashboard(usuario=None):
               font=("Arial",13),
               width=25, height=2, 
               activebackground='light gray',
-            #   command=abrir_reportes
+              command=lambda: abrir_lote(usuario=usuario)
               ).pack(side="left",padx=4)
     
     terrenos = tk.Button(dos_fila, 
@@ -81,7 +84,7 @@ def abrir_dashboard(usuario=None):
               font=("Arial",13),
               width=25, height=2, 
               activebackground='light gray',
-              command=lambda: abrir_terrenos(usuario),
+              command=lambda: abrir_terrenos(usuario=usuario),
               ).pack(side="right",padx=4)
     
     reserva = tk.Button(tres_fila, 
@@ -89,7 +92,7 @@ def abrir_dashboard(usuario=None):
                   font=("Arial",13),
                   width=25, height=2,
                   activebackground='light gray',
-                #   command=abrir_reportes
+                  command=lambda: abrir_reservacion(usuario=usuario)
                   ).pack(side="right",padx=4)
 
     contrato = tk.Button(tres_fila, 
@@ -97,7 +100,7 @@ def abrir_dashboard(usuario=None):
                   font=("Arial",13),
                   width=25, height=2,
                   activebackground='light gray',
-                #   command=abrir_reportes
+                  command=lambda: abrir_contrato(usuario=usuario)
                   ).pack(side="left",padx=4)
     
     financiamiento = tk.Button(cuatro_fila, 
@@ -105,7 +108,7 @@ def abrir_dashboard(usuario=None):
                   font=("Arial",13),
                   width=25, height=2,
                   activebackground='light gray',
-                #   command=abrir_reportes
+                  command=lambda: abrir_financiamiento(usuario=usuario)
                   ).pack(side="right",padx=4)
 
     pago = tk.Button(cuatro_fila, 
