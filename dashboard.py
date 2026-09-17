@@ -102,8 +102,24 @@ def abrir_dashboard(usuario=None):
                   activebackground='light gray',
                   command=lambda: abrir_contrato(usuario=usuario)
                   ).pack(side="left",padx=4)
-    
-    financiamiento = tk.Button(cuatro_fila, 
+
+    pago = tk.Button(cuatro_fila, 
+                  text="Gestionar Pagos", 
+                  font=("Arial",13),
+                  width=25, height=2,
+                  activebackground='light gray',
+                #   command=abrir_reportes
+                  ).pack(side="left",padx=4)
+
+    cuotas = tk.Button(cuatro_fila, 
+                  text="Revisar Cuotas", 
+                  font=("Arial",13),
+                  width=25, height=2,
+                  activebackground='light gray',
+                #   command=abrir_reportes
+                  ).pack(side="right",padx=4)
+
+    financiamiento = tk.Button(cinco_fila, 
                   text="Financiamiento", 
                   font=("Arial",13),
                   width=25, height=2,
@@ -111,14 +127,6 @@ def abrir_dashboard(usuario=None):
                   command=lambda: abrir_financiamiento(usuario=usuario)
                   ).pack(side="right",padx=4)
 
-    pago = tk.Button(cuatro_fila, 
-                  text="Pagos", 
-                  font=("Arial",13),
-                  width=25, height=2,
-                  activebackground='light gray',
-                #   command=abrir_reportes
-                  ).pack(side="left",padx=4)
-    
     reporte = tk.Button(cinco_fila, 
                   text="Reportes", 
                   font=("Arial",13),
@@ -127,14 +135,14 @@ def abrir_dashboard(usuario=None):
                 #   command=abrir_reportes
                   ).pack(side="left",padx=4)
 
-    cerrar = tk.Button(cinco_fila, 
+    cerrar = tk.Button(ventana, 
               text="Salir", 
               font=("Arial",13),
               width=25, height=2,
               background="#ff5151",
               activebackground="#fab1b1",
               command=salir
-              ).pack(side='right',padx=4)
+              ).pack() #side='right',padx=4
 
     return ventana
 
