@@ -72,6 +72,12 @@ def abrir_contrato(usuario=None, datos_reservacion=None):
     btn_agregar.pack(side="left", padx=4)
     btn_cerrar.pack(side="right", padx=4)
 
+    # Convierte una cadena de año-mes-dia a una cadena de texto
+    def _fmt(v):
+        if hasattr(v, "strftime"):
+            return v.strftime("%Y-%m-%d")
+        return v
+
     # =========================================================
     #                FUNCIONES INTERNAS
     # =========================================================
@@ -102,7 +108,7 @@ def abrir_contrato(usuario=None, datos_reservacion=None):
             sql += " ORDER BY co.IdContrato DESC"
             cur.execute(sql, params)
             for f in cur.fetchall():
-                tabla_contrato.insert("", "end", values=f)
+                tabla_contrato.insert("", "end", values=[_fmt(v) for v in f])
             con.close()
         except Exception as e:
             messagebox.showerror("Error", f"No se pudieron cargar contratos:\n{e}")
