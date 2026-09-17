@@ -118,6 +118,8 @@ def abrir_clientes(usuario=None):
     )
     boton_activar.pack(side="left", padx=5)
 
+    cargar_clientes()
+
 
 def validar_datos_cliente(identidad, nombre, apellido, telefono, correo):
     if not re.fullmatch(r"[0-9\-]+", identidad):
