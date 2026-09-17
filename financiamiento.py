@@ -59,7 +59,7 @@ def abrir_financiamiento(usuario=None):
     frame_tabla.pack(fill="both", expand=True, padx=10)
 
     columnas = ("IdFinanciamiento", "IdContrato", "Cliente", "MontoFinanciado",
-                "TasaInteres", "PlazoMeses", "FechaInicio", "Estado")
+                "TasaInteres (%)", "PlazoMeses", "FechaInicio", "Estado")
     tabla_financiamiento = ttk.Treeview(frame_tabla, columns=columnas,
                                         show="headings", height=15)
     for c in columnas:
@@ -113,8 +113,19 @@ def abrir_financiamiento(usuario=None):
                 params.append(estado)
             sql += " ORDER BY f.IdFinanciamiento DESC"
             cur.execute(sql, params)
-            for f in cur.fetchall():
-                tabla_financiamiento.insert("", "end", values=f)
+            for fila in cur.fetchall():
+                tabla_financiamiento.insert("", "end", values=(
+                    fila[0], # Id Financiamiento
+                    fila[1], # Id contrato
+                    fila[2], # Cliente
+                    float(fila[3]) if fila[3] is not None else 0.0, # Monto Financiado
+                    fila[4], # Tasa de Interes
+                    fila[5], # Plazo de meses
+                    fila[6].strftime("%Y-%m-%d")
+                        if hasattr (fila[6], "strftime") else fila[6], # Fecha de Inicio
+                    fila[7], # Estado
+                ))
+                print(fila)
             con.close()
         except Exception as e:
             messagebox.showerror("Error", f"No se pudieron cargar financiamientos:\n{e}")
@@ -224,10 +235,10 @@ def abrir_financiamiento(usuario=None):
                     INSERT INTO Financiamientos
                         (IdContrato, MontoFinanciado, TasaInteres, PlazoMeses,
                          FechaInicio, Estado)
+                    OUTPUT INSERTED.IdFinanciamiento
                     VALUES (?, ?, ?, ?, ?, 'Activo')
                 """, (id_contrato, monto, tasa, plazo, fecha_inicio))
 
-                cur.execute("SELECT CAST(SCOPE_IDENTITY() AS INT)")
                 id_fin = cur.fetchone()[0]
 
                 for k in range(1, plazo + 1):
@@ -292,3 +303,9 @@ def abrir_financiamiento(usuario=None):
     btn_ver_cuotas.config(command=accion_ver_cuotas)
 
     cargar_financiamientos()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()
+    abrir_financiamiento()
+    root.mainloop()
