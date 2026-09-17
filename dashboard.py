@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
 from database import conectar_bd
 from cliente import abrir_clientes
 from proyecto import abrir_proyecto
@@ -11,6 +10,7 @@ from financiamiento import abrir_financiamiento
 from gestion_pago import abrir_gestion_pagos
 from cuota import abrir_gestion_cuotas
 from reporte import abrir_reportes
+from gestionar_usuarios import abrir_usuarios
 
 def abrir_dashboard(usuario=None):
 
@@ -59,9 +59,11 @@ def abrir_dashboard(usuario=None):
     cinco_fila = tk.Frame(ventana)
     cinco_fila.pack(pady=8)
 
+    seis_fila = tk.Frame(ventana)
+    seis_fila.pack(pady=8)
+
     # ==============================
     # Botones dentro de las filas
-    # ==============================
     cliente = tk.Button(uno_fila, 
               text="Clientes", 
               font=("Arial",13),
@@ -142,20 +144,28 @@ def abrir_dashboard(usuario=None):
                   command=lambda: abrir_reportes()
                   ).pack(side="left",padx=4)
 
-    cerrar = tk.Button(ventana, 
+    gestionar_usuarios = tk.Button(seis_fila,
+                             text="Usuarios",
+                             font=("Arial",13),
+                             width=25,height=2,
+                             activebackground='light gray',
+                             command = lambda: abrir_usuarios()
+                             ).pack(side="left",padx=4)
+
+    cerrar = tk.Button(seis_fila, 
               text="Salir", 
               font=("Arial",13),
               width=25, height=2,
               background="#ff5151",
               activebackground="#fab1b1",
               command=salir
-              ).pack() #side='right',padx=4
+              ).pack(side="right",padx=4) #side='right',padx=4
 
     return ventana
 
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.withdraw()
-    abrir_dashboard()
-    root.mainloop()
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     root.withdraw()
+#     abrir_dashboard()
+#     root.mainloop()
