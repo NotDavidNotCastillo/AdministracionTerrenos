@@ -78,9 +78,7 @@ def abrir_reservacion(usuario=None):
     btn_convertir.pack(side="left", padx=4)
     btn_cerrar.pack(side="right", padx=4)
 
-    # =========================================================
-    #                FUNCIONES INTERNAS
-    # =========================================================
+    #                 FUNCIONES INTERNAS
     def cargar_reservaciones(filtro="", estado=None):
         for i in tabla_reservacion.get_children():
             tabla_reservacion.delete(i)
@@ -107,7 +105,15 @@ def abrir_reservacion(usuario=None):
             sql += " ORDER BY r.IdReservacion DESC"
             cur.execute(sql, params)
             for fila in cur.fetchall():
-                tabla_reservacion.insert("", "end", values=fila)
+                tabla_reservacion.insert("", "end", values=(
+                    fila[0], # id reserva
+                    fila[1], # cliente
+                    fila[2], # lote
+                    fila[3].strftime("%Y-%m-%d")        # fecha reservacion
+                        if hasattr (fila[3], "strftime") else fila[3], 
+                    float(fila[4]) if fila[4] is not None else 0.0, # monto reserva
+                    fila[5], # estado
+                ))
             con.close()
         except Exception as e:
             messagebox.showerror("Error", f"No se pudieron cargar reservaciones:\n{e}")
@@ -270,3 +276,9 @@ def abrir_reservacion(usuario=None):
     btn_convertir.config(command=accion_convertir)
 
     cargar_reservaciones()
+
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     root.withdraw()
+#     abrir_reservacion()
+#     root.mainloop()
