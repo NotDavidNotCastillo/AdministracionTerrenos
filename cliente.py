@@ -22,7 +22,7 @@ def abrir_clientes(usuario=None):
     ventana_clientes.geometry("1000x600")
     ventana_clientes.resizable(False, False)
 
-    rol = usuario.get("NombreRol")
+    rol = usuario.get("NombreRol") if usuario else None
     print(rol)
 
     # === PERMISOS ===
@@ -543,8 +543,8 @@ def activar_cliente():
         messagebox.showerror("Error", f"No se pudo activar el cliente.\n\n{error}")
 
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.withdraw()
-    abrir_clientes()
-    root.mainloop()
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     root.withdraw()
+#     abrir_clientes()
+#     root.mainloop()
