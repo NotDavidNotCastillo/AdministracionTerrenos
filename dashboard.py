@@ -8,6 +8,8 @@ from lote import abrir_lote
 from reservacion import abrir_reservacion
 from contrato import abrir_contrato
 from financiamiento import abrir_financiamiento
+from gestion_pago import abrir_gestion_pagos
+from cuota import abrir_gestion_cuotas
 
 def abrir_dashboard(usuario=None):
 
@@ -103,12 +105,12 @@ def abrir_dashboard(usuario=None):
                   command=lambda: abrir_contrato(usuario=usuario)
                   ).pack(side="left",padx=4)
 
-    pago = tk.Button(cuatro_fila, 
+    gestion_pago = tk.Button(cuatro_fila, 
                   text="Gestionar Pagos", 
                   font=("Arial",13),
                   width=25, height=2,
                   activebackground='light gray',
-                #   command=abrir_reportes
+                  command=lambda: abrir_gestion_pagos()
                   ).pack(side="left",padx=4)
 
     cuotas = tk.Button(cuatro_fila, 
@@ -116,7 +118,7 @@ def abrir_dashboard(usuario=None):
                   font=("Arial",13),
                   width=25, height=2,
                   activebackground='light gray',
-                #   command=abrir_reportes
+                  command=lambda: abrir_gestion_cuotas()
                   ).pack(side="right",padx=4)
 
     financiamiento = tk.Button(cinco_fila, 
