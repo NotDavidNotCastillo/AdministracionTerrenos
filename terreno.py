@@ -461,3 +461,9 @@ def abrir_terrenos(usuario=None):
 
     # ============ CARGA INICIAL ============
     cargar_terrenos()
+
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     root.withdraw()
+#     abrir_terrenos()
+#     root.mainloop()
