@@ -10,6 +10,7 @@ from contrato import abrir_contrato
 from financiamiento import abrir_financiamiento
 from gestion_pago import abrir_gestion_pagos
 from cuota import abrir_gestion_cuotas
+from reporte import abrir_reportes
 
 def abrir_dashboard(usuario=None):
 
@@ -18,6 +19,10 @@ def abrir_dashboard(usuario=None):
     ventana.title("DashBoard")
     ventana.geometry("700x600")
     ventana.resizable(True,True)
+
+    user = usuario.get("NombreRol") if usuario else "Sistema"
+
+    print(user)
 
     # print(usuario.get("NombreUsuario"))
 
@@ -134,7 +139,7 @@ def abrir_dashboard(usuario=None):
                   font=("Arial",13),
                   width=25, height=2,
                   activebackground='light gray',
-                #   command=abrir_reportes
+                  command=lambda: abrir_reportes()
                   ).pack(side="left",padx=4)
 
     cerrar = tk.Button(ventana, 
