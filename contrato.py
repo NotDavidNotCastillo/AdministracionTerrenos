@@ -107,8 +107,12 @@ def abrir_contrato(usuario=None, datos_reservacion=None):
                 params.append(tipo)
             sql += " ORDER BY co.IdContrato DESC"
             cur.execute(sql, params)
-            for f in cur.fetchall():
-                tabla_contrato.insert("", "end", values=[_fmt(v) for v in f])
+            for fila in cur.fetchall():
+                tabla_contrato.insert("", "end", values=(
+                    fila[0],fila[1],fila[2],
+                    fila[3],fila[4],fila[5],
+                    fila[6],fila[7]
+                ))
             con.close()
         except Exception as e:
             messagebox.showerror("Error", f"No se pudieron cargar contratos:\n{e}")
@@ -257,8 +261,8 @@ def abrir_contrato(usuario=None, datos_reservacion=None):
     if datos_reservacion:
         ventana_contrato.after(200, accion_crear)
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.withdraw()
-    abrir_contrato()
-    root.mainloop()
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     root.withdraw()
+#     abrir_contrato()
+#     root.mainloop()

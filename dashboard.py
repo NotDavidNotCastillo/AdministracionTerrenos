@@ -142,7 +142,7 @@ def abrir_dashboard(usuario=None):
                   width=25, height=2,
                   activebackground='light gray',
                   command=lambda: abrir_reportes()
-                  ).pack(side="left",padx=4)
+                  )
 
     gestionar_usuarios = tk.Button(seis_fila,
                              text="Usuarios",
@@ -150,7 +150,7 @@ def abrir_dashboard(usuario=None):
                              width=25,height=2,
                              activebackground='light gray',
                              command = lambda: abrir_usuarios()
-                             ).pack(side="left",padx=4)
+                             )
 
     cerrar = tk.Button(seis_fila, 
               text="Salir", 
@@ -161,11 +161,21 @@ def abrir_dashboard(usuario=None):
               command=salir
               ).pack(side="right",padx=4) #side='right',padx=4
 
+    estado = ""
+
+    estado = "normal" if user == "administrador" else "disabled"
+
+    reporte.config(state=estado)
+    gestionar_usuarios.config(state=estado)
+
+    reporte.pack(side="left",padx=4)
+    gestionar_usuarios.pack(side="left",padx=4)
+
     return ventana
 
 
-# if __name__ == "__main__":
-#     root = tk.Tk()
-#     root.withdraw()
-#     abrir_dashboard()
-#     root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()
+    abrir_dashboard()
+    root.mainloop()
