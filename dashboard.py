@@ -113,7 +113,7 @@ def abrir_dashboard(usuario=None):
                   ).pack(side="left",padx=4)
 
     gestion_pago = tk.Button(cuatro_fila, 
-                  text="Gestionar Pagos", 
+                  text="Realizar Pagos", 
                   font=("Arial",13),
                   width=25, height=2,
                   activebackground='light gray',
@@ -174,8 +174,8 @@ def abrir_dashboard(usuario=None):
     return ventana
 
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.withdraw()
-    abrir_dashboard()
-    root.mainloop()
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     root.withdraw()
+#     abrir_dashboard()
+#     root.mainloop()

@@ -291,8 +291,16 @@ def abrir_financiamiento(usuario=None):
                 FROM Cuotas WHERE IdFinanciamiento=?
                 ORDER BY NumeroCuota
             """, (id_fin,))
+
             for f in cur.fetchall():
-                tv.insert("", "end", values=f)
+                numero_cuota, date_ven, monto, estado = f
+                tv.insert("", "end", values=(
+                    numero_cuota,
+                    date_ven,
+                    monto,
+                    estado
+                ))
+
             con.close()
         except Exception as e:
             messagebox.showerror("Error", f"No se pudieron cargar cuotas:\n{e}")
